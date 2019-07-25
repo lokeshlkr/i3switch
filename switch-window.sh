@@ -6,11 +6,11 @@ ids=$(xprop -root |grep _NET_CLIENT_LIST_STACKING\(WINDOW\) |cut -d"#" -f2| tr -
 for id in $ids
 # get Class Name for all the windows
 # do names="$names $($HOME/.scripts/get-window-name.sh $id)"
-do names="$names $(xprop -id $id| grep WM_CLASS |tr -d '" '|cut -d "=" -f2|awk -F "," '{print $NF}')"
+do names="$names $(xprop -id $id| grep WM_CLASS |tr -d '" '|cut -d "=" -f2|awk -F "," '{print $NF}')($id)"
 done
 
 # Show Open window class names as a dmenu option
-target=$(echo $names | tr " " "\n" | dmenu -p "Choose a window to switch to: " -l 10)
+target=$(echo $names | tr " " "\n" | dmenu -p "Choose a window to switch to: " -l 10 | grep -Eo "\(.*\)" | tr -d "()" )
 
 # switch to chosen window
-i3-msg [class="$target"] focus
+i3-msg [id="$target"] focus
