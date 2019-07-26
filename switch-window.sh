@@ -14,3 +14,7 @@ target=$(echo $names | tr " " "\n" | dmenu -p "Choose a window to switch to: " -
 
 # switch to chosen window
 i3-msg [id="$target"] focus
+
+
+# If you install wmctrl then just following command is sufficient:
+# wmctrl -i -a $(wmctrl -l | dmenu -p "Choose a window to switch to: " -l 10 | cut -d " " -f1)
