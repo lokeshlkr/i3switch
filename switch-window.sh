@@ -18,3 +18,5 @@ i3-msg [id="$target"] focus
 
 # If you install wmctrl then just following command is sufficient:
 # wmctrl -i -a $(wmctrl -l | dmenu -p "Choose a window to switch to: " -l 10 | cut -d " " -f1)
+# same if you have rofi
+# wmctrl -i -a $(wmctrl -l -x -u | cut -d" " -f "1 4-" | rofi -dmenu -i -p "window" | cut -d " " -f1)
