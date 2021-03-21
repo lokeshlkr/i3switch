@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # Get IDs for all the open windows
 # ids=$($HOME/.scripts/get-window-id.sh a)
 ids=$(xprop -root |grep _NET_CLIENT_LIST_STACKING\(WINDOW\) |cut -d"#" -f2| tr -d " "|tr "," " ")
